@@ -16,23 +16,15 @@ public class NotificationController {
 
     @GetMapping("/sendemail")
     public String sendEmailNotification(@RequestParam String toEmail, @RequestParam String subject,
-                                        @RequestParam String message) {
-        try{
+                                        @RequestParam String message) throws Exception {
             emailSenderService.sendMail(toEmail, subject, message);
             return "Email sent successfully";
-        } catch(SendFailedException ex){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage(), ex);
-        }
     }
 
     @PostMapping("/sendmail")
     @ResponseStatus(HttpStatus.CREATED)
-    public String sendEmailNotification(@RequestBody MailModel model) {
-        try {
+    public String sendEmailNotification(@RequestBody MailModel model) throws Exception {
             emailSenderService.sendMail(model.getEmailId(), model.getSubject(), model.getMessage());
             return "Email sent successfully";
-        } catch(SendFailedException ex){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage(), ex);
-        }
     }
 }

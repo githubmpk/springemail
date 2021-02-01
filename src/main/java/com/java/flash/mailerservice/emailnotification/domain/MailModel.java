@@ -1,7 +1,5 @@
 package com.java.flash.mailerservice.emailnotification.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class MailModel {
 
     private String emailId;
